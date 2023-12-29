@@ -42,6 +42,8 @@ def paths(config):
         flags[0] = 'skip'
     elif isvalidpath(config['pe_server_license']):
         flags[0] = 'exists'
+        if isvalidpath(f"{config['pe_server_license']}/bin/Win64_Shipping_Server/0Harmony.dll"):
+            flags[0] = True
     if config['bannerlord'] is None:
         flags[1] = 'skip'
     elif isvalidpath(config['bannerlord']):
@@ -52,29 +54,45 @@ def paths(config):
         flags[2] = 'skip'
     elif isvalidpath(config['pe']):
         flags[2] = 'exists'
+        if isvalidpath(f"{config['pe']}/DsAssetPackages"):
+            flags[2] = True
     if config['pe_submodule_file'] is None:
         flags[3] = 'skip'
     elif isvalidpath(config['pe_submodule_file']):
-        flags[3] = 'exists'
+        flags[3] = True
     if config['pe_bin'] is None:
         flags[4] = 'skip'
     elif isvalidpath(config['pe_bin']):
         flags[4] = 'exists'
+        if isvalidpath(f"{config['pe_bin']}/0Harmony.dll"):
+            flags[4] = True
     if config['pe_config'] is None:
         flags[5] = 'skip'
     elif isvalidpath(config['pe_config']):
         flags[5] = 'exists'
+        if isvalidpath(f"{config['pe_config']}/SaveConfig.xml"):
+            flags[5] = True
     if config['mission'] is None:
         flags[6] = 'skip'
     elif isvalidpath(config['mission']):
         flags[6] = 'exists'
+        if len(os.listdir(config['mission'])) > 0:
+            flags[6] = True
+            for file in os.listdir(config['mission']):
+                if not file.endswith(".txt"):
+                    flags[6] = 'files_extension'
     if config['starter'] is None:
         flags[7] = 'skip'
     elif isvalidpath(config['starter']):
         flags[7] = 'exists'
+        if len(os.listdir(config['starter'])) > 0:
+            flags[7] = True
+            for file in os.listdir(config['starter']):
+                if not file.endswith(".bat"):
+                    flags[7] = 'files_extension'
     if config['destination'] is None:
         flags[8] = 'skip'
     elif isvalidpath(config['destination']):
-        flags[8] = 'exists'
+        flags[8] = True
 
     return flags
