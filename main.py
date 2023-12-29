@@ -1,5 +1,6 @@
 import argparse
 import json
+import sys
 
 import check
 import gui
@@ -24,4 +25,4 @@ else:
     window = gui.MainWindow(config)
     window.run()
 
-exit(0)
+sys.exit(0)
