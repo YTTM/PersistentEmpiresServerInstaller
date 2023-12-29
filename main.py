@@ -12,14 +12,16 @@ args = parser.parse_args()
 
 if args.config is not None:
     config = json.load(args.config)
+else:
+    config = None
 
-if args.nogui:
+if args.nogui and config is not None:
     if not all(check.configuration(config)):
         raise Exception('Invalid configuration')
     else:
         installer.run(config)
 else:
-    window = gui.MainWindow()
+    window = gui.MainWindow(config)
     window.run()
 
 exit(0)
