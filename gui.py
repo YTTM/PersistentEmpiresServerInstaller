@@ -19,38 +19,47 @@ class BaseWindow:
         frame1.configure(height=200, width=200)
         self.label_pe_server_license = ttk.Label(frame1)
         self.label_pe_server_license.configure(
-            padding=5, text='Persistent Empires server license')
+            padding=5, text='Persistent Empires server license', width=30)
         self.label_pe_server_license.grid(column=0, row=0, sticky="w")
         self.label_bannerlord = ttk.Label(frame1)
         self.label_bannerlord.configure(
-            padding=5, text='Bannerlord dedicated server')
+            padding=5, text='Bannerlord dedicated server', width=30)
         self.label_bannerlord.grid(column=0, row=1, sticky="w")
         self.label_pe = ttk.Label(frame1)
-        self.label_pe.configure(padding=5, text='Persistent Empires mod')
+        self.label_pe.configure(
+            padding=5,
+            text='Persistent Empires mod',
+            width=30)
         self.label_pe.grid(column=0, row=2, sticky="w")
         self.label_pe_submodule_file = ttk.Label(frame1)
-        self.label_pe_submodule_file.configure(padding=5, text='SubModule.xml')
+        self.label_pe_submodule_file.configure(
+            padding=5, text='SubModule.xml', width=30)
         self.label_pe_submodule_file.grid(column=0, row=3, sticky="w")
         self.label_pe_bin = ttk.Label(frame1)
-        self.label_pe_bin.configure(padding=5, text='Server binary release')
+        self.label_pe_bin.configure(
+            padding=5, text='Server binary release', width=30)
         self.label_pe_bin.grid(column=0, row=4, sticky="w")
         self.label_pe_config = ttk.Label(frame1)
         self.label_pe_config.configure(
-            padding=5, text='ModuleData configuration files')
+            padding=5, text='ModuleData configuration files', width=30)
         self.label_pe_config.grid(column=0, row=5, sticky="w")
         self.label_mission = ttk.Label(frame1)
         self.label_mission.configure(
-            padding=5, text='Bannerlord mission files (.txt)')
+            padding=5, text='Bannerlord mission files (.txt)', width=30)
         self.label_mission.grid(column=0, row=6, sticky="w")
         self.label_starter = ttk.Label(frame1)
-        self.label_starter.configure(padding=5, text='Server starters (.bat)')
+        self.label_starter.configure(
+            padding=5, text='Server starters (.bat)', width=30)
         self.label_starter.grid(column=0, row=7, sticky="w")
         label9 = ttk.Label(frame1)
-        label9.configure(padding=5)
+        label9.configure(padding=5, width=30)
         label9.grid(column=0, row=8, sticky="w")
         self.label_destination = ttk.Label(frame1)
         self.label_destination.configure(
-            justify="right", padding=5, text='Destination folder')
+            justify="right",
+            padding=5,
+            text='Destination folder',
+            width=30)
         self.label_destination.grid(column=0, row=9, sticky="w")
         self.path_pe_server_license = PathChooserInput(frame1)
         self.pe_server_license = tk.StringVar()
@@ -215,7 +224,7 @@ class MainWindow(BaseWindow):
     def __init__(self, config=None):
         super().__init__()
 
-        self.mainwindow.geometry("+0+0")
+        self.mainwindow.geometry('+0+0')
         self.mainwindow.wm_iconphoto(True, tk.PhotoImage(data=base64.b64decode(icon.bannerlord)))
         self.icon_pe = tk.PhotoImage(data=base64.b64decode(icon.pe))
         self.label_show_1.configure(image=self.icon_pe)
@@ -229,7 +238,7 @@ class MainWindow(BaseWindow):
 
     def load_config(self, config):
         if not all(check.configuration(config)):
-            tk.messagebox.showerror("Load configuration file", "Invalid configuration")
+            tk.messagebox.showerror('Load configuration file', 'Invalid configuration')
         else:
             emptyIfNone = lambda a: '' if a is None else a
             self.config = config
@@ -257,11 +266,44 @@ class MainWindow(BaseWindow):
         self.config['starter'] = noneIfEmpty(self.starter.get())
         self.config['destination'] = noneIfEmpty(self.destination.get())
 
+        if event.widget == self.path_pe_server_license:
+            self.label_pe_server_license.config({'background': 'gray94'})
+        elif event.widget == self.path_bannerlord:
+            self.label_bannerlord.config({'background': 'gray94'})
+        elif event.widget == self.path_pe:
+            self.label_pe.config({'background': 'gray94'})
+        elif event.widget == self.path_pe_submodule_file:
+            self.label_pe_submodule_file.config({'background': 'gray94'})
+        elif event.widget == self.path_pe_bin:
+            self.label_pe_bin.config({'background': 'gray94'})
+        elif event.widget == self.path_pe_config:
+            self.label_pe_config.config({'background': 'gray94'})
+        elif event.widget == self.path_mission:
+            self.label_mission.config({'background': 'gray94'})
+        elif event.widget == self.path_starter:
+            self.label_starter.config({'background': 'gray94'})
+        elif event.widget == self.path_destination:
+            self.label_destination.config({'background': 'gray94'})
+
     def check(self):
         if not all(check.configuration(self.config)):
-            tk.messagebox.showerror("Check", "Invalid configuration")
+            tk.messagebox.showerror('Check', 'Invalid configuration')
             return
-        pass
+
+        check_flags = check.paths(self.config)
+
+        colorFromCheck = lambda a: 'lightgreen' if a is True else ('red' if a is False else 'yellow')
+
+        self.label_pe_server_license.config({'background': colorFromCheck(check_flags[0])})
+        self.label_bannerlord.config({'background': colorFromCheck(check_flags[1])})
+        self.label_pe.config({'background': colorFromCheck(check_flags[2])})
+        self.label_pe_submodule_file.config({'background': colorFromCheck(check_flags[3])})
+        self.label_pe_bin.config({'background': colorFromCheck(check_flags[4])})
+        self.label_pe_config.config({'background': colorFromCheck(check_flags[5])})
+        self.label_mission.config({'background': colorFromCheck(check_flags[6])})
+        self.label_starter.config({'background': colorFromCheck(check_flags[7])})
+        self.label_destination.config({'background': colorFromCheck(check_flags[8])})
+        self.button_install['state'] = 'enable'
 
     def install(self):
         pass
