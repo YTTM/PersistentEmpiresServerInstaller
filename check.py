@@ -38,25 +38,43 @@ def paths(config):
             pass
         return False
 
-    if isvalidpath(config['pe_server_license']) or config['pe_server_license'] is None:
+    if config['pe_server_license'] is None:
+        flags[0] = 'skip'
+    elif isvalidpath(config['pe_server_license']):
         flags[0] = 'exists'
-    if isvalidpath(config['bannerlord']) or config['bannerlord'] is None:
+    if config['bannerlord'] is None:
+        flags[1] = 'skip'
+    elif isvalidpath(config['bannerlord']):
         flags[1] = 'exists'
         if isvalidpath(f"{config['bannerlord']}/bin/Win64_Shipping_Server/DedicatedCustomServer.Starter.exe"):
             flags[1] = True
-    if isvalidpath(config['pe']) or config['pe'] is None:
+    if config['pe'] is None:
+        flags[2] = 'skip'
+    elif isvalidpath(config['pe']):
         flags[2] = 'exists'
-    if isvalidpath(config['pe_submodule_file']) or config['pe_submodule_file'] is None:
+    if config['pe_submodule_file'] is None:
+        flags[3] = 'skip'
+    elif isvalidpath(config['pe_submodule_file']):
         flags[3] = 'exists'
-    if isvalidpath(config['pe_bin']) or config['pe_bin'] is None:
+    if config['pe_bin'] is None:
+        flags[4] = 'skip'
+    elif isvalidpath(config['pe_bin']):
         flags[4] = 'exists'
-    if isvalidpath(config['pe_config']) or config['pe_config'] is None:
+    if config['pe_config'] is None:
+        flags[5] = 'skip'
+    elif isvalidpath(config['pe_config']):
         flags[5] = 'exists'
-    if isvalidpath(config['mission']) or config['mission'] is None:
+    if config['mission'] is None:
+        flags[6] = 'skip'
+    elif isvalidpath(config['mission']):
         flags[6] = 'exists'
-    if isvalidpath(config['starter']) or config['starter'] is None:
+    if config['starter'] is None:
+        flags[7] = 'skip'
+    elif isvalidpath(config['starter']):
         flags[7] = 'exists'
-    if isvalidpath(config['destination']) or config['destination'] is None:
+    if config['destination'] is None:
+        flags[8] = 'skip'
+    elif isvalidpath(config['destination']):
         flags[8] = 'exists'
 
     return flags

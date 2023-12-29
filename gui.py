@@ -292,7 +292,8 @@ class MainWindow(BaseWindow):
 
         check_flags = check.paths(self.config)
 
-        colorFromCheck = lambda a: 'lightgreen' if a is True else ('red' if a is False else 'yellow')
+        colorFromCheck = lambda a: 'lightgreen' if a is True else ('red' if a is False else
+                                                                   ('orange' if a == 'exists' else 'yellow'))
 
         self.label_pe_server_license.config({'background': colorFromCheck(check_flags[0])})
         self.label_bannerlord.config({'background': colorFromCheck(check_flags[1])})
