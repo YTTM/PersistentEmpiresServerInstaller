@@ -1,5 +1,5 @@
 def configuration(config):
-    flags = [False, False, False, False, False, False, False, False, False]
+    flags = [False, False, False, False, False, False, False, False, False, False]
     if 'pe_server_license' in config.keys():
         flags[0] = True
     if 'bannerlord' in config.keys():
@@ -18,6 +18,8 @@ def configuration(config):
         flags[7] = True
     if 'destination' in config.keys():
         flags[8] = True
+    if len(config.keys()) == 9:
+        flags[9] = True
 
     return flags
 
