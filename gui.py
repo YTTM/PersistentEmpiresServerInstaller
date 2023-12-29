@@ -1,10 +1,12 @@
 import base64
+import json
 
 import check
 import icon
 
 import tkinter as tk
 import tkinter.ttk as ttk
+import tkinter.filedialog
 import tkinter.messagebox
 from pygubu.widgets.pathchooserinput import PathChooserInput
 
@@ -266,24 +268,25 @@ class MainWindow(BaseWindow):
         self.config['starter'] = noneIfEmpty(self.starter.get())
         self.config['destination'] = noneIfEmpty(self.destination.get())
 
-        if event.widget == self.path_pe_server_license:
-            self.label_pe_server_license.config({'background': 'gray94'})
-        elif event.widget == self.path_bannerlord:
-            self.label_bannerlord.config({'background': 'gray94'})
-        elif event.widget == self.path_pe:
-            self.label_pe.config({'background': 'gray94'})
-        elif event.widget == self.path_pe_submodule_file:
-            self.label_pe_submodule_file.config({'background': 'gray94'})
-        elif event.widget == self.path_pe_bin:
-            self.label_pe_bin.config({'background': 'gray94'})
-        elif event.widget == self.path_pe_config:
-            self.label_pe_config.config({'background': 'gray94'})
-        elif event.widget == self.path_mission:
-            self.label_mission.config({'background': 'gray94'})
-        elif event.widget == self.path_starter:
-            self.label_starter.config({'background': 'gray94'})
-        elif event.widget == self.path_destination:
-            self.label_destination.config({'background': 'gray94'})
+        if event is not None:
+            if event.widget == self.path_pe_server_license:
+                self.label_pe_server_license.config({'background': 'gray94'})
+            elif event.widget == self.path_bannerlord:
+                self.label_bannerlord.config({'background': 'gray94'})
+            elif event.widget == self.path_pe:
+                self.label_pe.config({'background': 'gray94'})
+            elif event.widget == self.path_pe_submodule_file:
+                self.label_pe_submodule_file.config({'background': 'gray94'})
+            elif event.widget == self.path_pe_bin:
+                self.label_pe_bin.config({'background': 'gray94'})
+            elif event.widget == self.path_pe_config:
+                self.label_pe_config.config({'background': 'gray94'})
+            elif event.widget == self.path_mission:
+                self.label_mission.config({'background': 'gray94'})
+            elif event.widget == self.path_starter:
+                self.label_starter.config({'background': 'gray94'})
+            elif event.widget == self.path_destination:
+                self.label_destination.config({'background': 'gray94'})
 
     def check(self):
         if not all(check.configuration(self.config)):
@@ -310,7 +313,14 @@ class MainWindow(BaseWindow):
         pass
 
     def open(self):
-        pass
+        file = tkinter.filedialog.askopenfile(filetypes=[('Configuration file', '.json')])
+        if file is None:
+            return
+        self.load_config(json.load(file))
+        self.path_changed()
 
     def save(self):
-        pass
+        file = tkinter.filedialog.asksaveasfile(filetypes=[('Configuration file', '.json')])
+        if file is None:
+            return
+        json.dump(self.config, file)
