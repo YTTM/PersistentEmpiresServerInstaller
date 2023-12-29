@@ -321,7 +321,7 @@ class MainWindow(BaseWindow):
         self.path_changed()
 
     def save(self):
-        file = tkinter.filedialog.asksaveasfile(filetypes=[('Configuration file', '.json')])
+        file = tkinter.filedialog.asksaveasfile(defaultextension='.json', filetypes=[('Configuration file', '.json')])
         if file is None:
             return
         json.dump(self.config, file)
