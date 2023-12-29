@@ -11,7 +11,7 @@
           <property name="side">top</property>
         </layout>
         <child>
-          <object class="ttk.Label" id="label1">
+          <object class="ttk.Label" id="label_pe_server_license" named="True">
             <property name="padding">5</property>
             <property name="text" translatable="yes">Persistent Empires server license</property>
             <layout manager="grid">
@@ -22,7 +22,7 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Label" id="label2">
+          <object class="ttk.Label" id="label_bannerlord" named="True">
             <property name="padding">5</property>
             <property name="text" translatable="yes">Bannerlord dedicated server</property>
             <layout manager="grid">
@@ -33,7 +33,7 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Label" id="label3">
+          <object class="ttk.Label" id="label_pe" named="True">
             <property name="padding">5</property>
             <property name="text" translatable="yes">Persistent Empires mod</property>
             <layout manager="grid">
@@ -44,7 +44,7 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Label" id="label4">
+          <object class="ttk.Label" id="label_pe_submodule_file" named="True">
             <property name="padding">5</property>
             <property name="text" translatable="yes">SubModule.xml</property>
             <layout manager="grid">
@@ -55,7 +55,7 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Label" id="label5">
+          <object class="ttk.Label" id="label_pe_bin" named="True">
             <property name="padding">5</property>
             <property name="text" translatable="yes">Server binary release</property>
             <layout manager="grid">
@@ -66,7 +66,7 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Label" id="label6">
+          <object class="ttk.Label" id="label_pe_config" named="True">
             <property name="padding">5</property>
             <property name="text" translatable="yes">ModuleData configuration files</property>
             <layout manager="grid">
@@ -77,7 +77,7 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Label" id="label7">
+          <object class="ttk.Label" id="label_mission" named="True">
             <property name="padding">5</property>
             <property name="text" translatable="yes">Bannerlord mission files (.txt)</property>
             <layout manager="grid">
@@ -88,7 +88,7 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Label" id="label8">
+          <object class="ttk.Label" id="label_starter" named="True">
             <property name="padding">5</property>
             <property name="text" translatable="yes">Server starters (.bat)</property>
             <layout manager="grid">
@@ -109,7 +109,7 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Label" id="label10">
+          <object class="ttk.Label" id="label_destination" named="True">
             <property name="justify">right</property>
             <property name="padding">5</property>
             <property name="text" translatable="yes">Destination folder</property>
@@ -121,7 +121,7 @@
           </object>
         </child>
         <child>
-          <object class="pygubu.builder.widgets.pathchooserinput" id="pathchooserinput1">
+          <object class="pygubu.builder.widgets.pathchooserinput" id="path_pe_server_license" named="True">
             <property name="mustexist">true</property>
             <property name="textvariable">string:pe_server_license</property>
             <property name="type">directory</property>
@@ -134,7 +134,7 @@
           </object>
         </child>
         <child>
-          <object class="pygubu.builder.widgets.pathchooserinput" id="pathchooserinput2">
+          <object class="pygubu.builder.widgets.pathchooserinput" id="path_bannerlord" named="True">
             <property name="mustexist">true</property>
             <property name="textvariable">string:bannerlord</property>
             <property name="type">directory</property>
@@ -147,7 +147,7 @@
           </object>
         </child>
         <child>
-          <object class="pygubu.builder.widgets.pathchooserinput" id="pathchooserinput3">
+          <object class="pygubu.builder.widgets.pathchooserinput" id="path_pe" named="True">
             <property name="mustexist">true</property>
             <property name="textvariable">string:pe</property>
             <property name="type">directory</property>
@@ -160,7 +160,7 @@
           </object>
         </child>
         <child>
-          <object class="pygubu.builder.widgets.pathchooserinput" id="pathchooserinput4">
+          <object class="pygubu.builder.widgets.pathchooserinput" id="path_pe_submodule_file" named="True">
             <property name="mustexist">true</property>
             <property name="textvariable">string:pe_submodule_file</property>
             <property name="type">file</property>
@@ -173,7 +173,7 @@
           </object>
         </child>
         <child>
-          <object class="pygubu.builder.widgets.pathchooserinput" id="pathchooserinput5">
+          <object class="pygubu.builder.widgets.pathchooserinput" id="path_pe_bin" named="True">
             <property name="mustexist">true</property>
             <property name="textvariable">string:pe_bin</property>
             <property name="type">directory</property>
@@ -186,7 +186,7 @@
           </object>
         </child>
         <child>
-          <object class="pygubu.builder.widgets.pathchooserinput" id="pathchooserinput6">
+          <object class="pygubu.builder.widgets.pathchooserinput" id="path_pe_config" named="True">
             <property name="mustexist">true</property>
             <property name="textvariable">string:pe_config</property>
             <property name="type">directory</property>
@@ -199,7 +199,7 @@
           </object>
         </child>
         <child>
-          <object class="pygubu.builder.widgets.pathchooserinput" id="pathchooserinput7">
+          <object class="pygubu.builder.widgets.pathchooserinput" id="path_mission" named="True">
             <property name="mustexist">true</property>
             <property name="textvariable">string:mission</property>
             <property name="type">directory</property>
@@ -212,7 +212,7 @@
           </object>
         </child>
         <child>
-          <object class="pygubu.builder.widgets.pathchooserinput" id="pathchooserinput8">
+          <object class="pygubu.builder.widgets.pathchooserinput" id="path_starter" named="True">
             <property name="mustexist">true</property>
             <property name="textvariable">string:starter</property>
             <property name="type">directory</property>
@@ -238,7 +238,7 @@
           </object>
         </child>
         <child>
-          <object class="pygubu.builder.widgets.pathchooserinput" id="pathchooserinput10">
+          <object class="pygubu.builder.widgets.pathchooserinput" id="path_destination" named="True">
             <property name="mustexist">true</property>
             <property name="textvariable">string:destination</property>
             <property name="type">directory</property>
@@ -285,7 +285,7 @@ yttrium@14egaming.com</property>
           <property name="side">top</property>
         </layout>
         <child>
-          <object class="ttk.Button" id="button11">
+          <object class="ttk.Button" id="button_check" named="True">
             <property name="command" type="command" cbtype="simple">check</property>
             <property name="text" translatable="yes">Check</property>
             <property name="width">20</property>
@@ -296,7 +296,7 @@ yttrium@14egaming.com</property>
           </object>
         </child>
         <child>
-          <object class="ttk.Button" id="button12">
+          <object class="ttk.Button" id="button_install" named="True">
             <property name="command" type="command" cbtype="simple">install</property>
             <property name="state">disabled</property>
             <property name="text" translatable="yes">Install</property>
