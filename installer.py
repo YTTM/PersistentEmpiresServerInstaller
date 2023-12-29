@@ -2,6 +2,7 @@ import shutil
 
 
 def run(config):
+    print("Copy started")
     # Persistent Empires files license
     if config['pe_server_license'] is not None:
         src = config['pe_server_license']
@@ -51,3 +52,4 @@ def run(config):
         dst = f"{config['destination']}\\bin\\Win64_Shipping_Server"
         print(f'{src}\n> {dst}')
         shutil.copytree(src, dst, dirs_exist_ok=True)
+    print("Copy finished")

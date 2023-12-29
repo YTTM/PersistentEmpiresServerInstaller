@@ -3,6 +3,7 @@ import json
 
 import check
 import icon
+import installer
 
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -310,7 +311,7 @@ class MainWindow(BaseWindow):
         self.button_install['state'] = 'enable'
 
     def install(self):
-        pass
+        installer.run(self.config)
 
     def open(self):
         file = tkinter.filedialog.askopenfile(filetypes=[('Configuration file', '.json')])

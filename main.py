@@ -2,8 +2,8 @@ import argparse
 import json
 
 import check
-import installer
 import gui
+import installer
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=argparse.FileType('r'), default=None)
