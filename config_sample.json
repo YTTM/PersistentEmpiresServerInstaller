@@ -7,5 +7,6 @@
   "pe_config": "C:\\BannerlordPE_installer\\Configs",
   "mission": "C:\\BannerlordPE_installer\\Missions",
   "starter": "C:\\BannerlordPE_installer\\Starter",
-  "destination": "C:\\BannerlordPE"
+  "destination": "C:\\BannerlordPE",
+  "delete_AspNetCoreApp": 1
 }
