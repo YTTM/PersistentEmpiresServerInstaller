@@ -17,7 +17,7 @@ class BaseWindow:
         # build ui
         toplevel1 = tk.Tk() if master is None else tk.Toplevel(master)
         toplevel1.resizable(False, False)
-        toplevel1.title("Persistent Empires Server Installer - [14e] Yttrium")
+        toplevel1.title("Persistent Empires Server Installer")
         frame1 = ttk.Frame(toplevel1)
         frame1.configure(height=200, width=200)
         self.label_pe_server_license = ttk.Label(frame1)
@@ -175,7 +175,17 @@ class BaseWindow:
             justify="center",
             padding=10,
             text='Persistent Empires Server Installer\n\n[14e] Yttrium\nyttrium@14egaming.com')
-        self.label_show_2.grid(column=2, row=5, rowspan=5)
+        self.label_show_2.grid(column=2, row=5, rowspan=4)
+        self.check_delete_AspNetCoreApp = ttk.Checkbutton(frame1)
+        self.delete_AspNetCoreApp = tk.IntVar()
+        self.check_delete_AspNetCoreApp.configure(
+            offvalue=0,
+            onvalue=1,
+            text='Delete Microsoft.AspNetCore.App',
+            variable=self.delete_AspNetCoreApp)
+        self.check_delete_AspNetCoreApp.grid(column=2, row=9, sticky="w")
+        self.check_delete_AspNetCoreApp.configure(
+            command=self.checkbox_changed)
         frame1.pack(side="top")
         frame3 = ttk.Frame(toplevel1)
         frame3.configure(height=200, width=200)
@@ -208,6 +218,9 @@ class BaseWindow:
         return menu1
 
     def path_changed(self, event=None):
+        pass
+
+    def checkbox_changed(self):
         pass
 
     def check(self):
@@ -254,6 +267,7 @@ class MainWindow(BaseWindow):
             self.mission.set(emptyIfNone(config['mission']))
             self.starter.set(emptyIfNone(config['starter']))
             self.destination.set(emptyIfNone(config['destination']))
+            self.delete_AspNetCoreApp.set(config['delete_AspNetCoreApp'])
 
     def path_changed(self, event=None):
         self.button_install['state'] = 'disabled'
@@ -268,6 +282,7 @@ class MainWindow(BaseWindow):
         self.config['mission'] = noneIfEmpty(self.mission.get())
         self.config['starter'] = noneIfEmpty(self.starter.get())
         self.config['destination'] = noneIfEmpty(self.destination.get())
+        self.config['delete_AspNetCoreApp'] = self.delete_AspNetCoreApp.get()
 
         if event is not None:
             if event.widget == self.path_pe_server_license:
@@ -288,6 +303,9 @@ class MainWindow(BaseWindow):
                 self.label_starter.config({'background': 'gray94'})
             elif event.widget == self.path_destination:
                 self.label_destination.config({'background': 'gray94'})
+
+    def checkbox_changed(self):
+        self.path_changed()
 
     def check(self):
         if not all(check.configuration(self.config)):
