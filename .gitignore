@@ -168,5 +168,6 @@ config2.json
 icon/
 
 # release folders
+release/main.exe
 release/main
 release/spec
