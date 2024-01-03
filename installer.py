@@ -1,3 +1,4 @@
+import os
 import shutil
 
 
@@ -53,3 +54,10 @@ def run(config):
         print(f'{src}\n> {dst}')
         shutil.copytree(src, dst, dirs_exist_ok=True)
     print("Copy finished")
+    # bin/Win64_Shipping_Server/Microsoft.AspNetCore.App
+    if config['delete_AspNetCoreApp'] is not None and config['delete_AspNetCoreApp'] == 1:
+        print("Delete AspNetCore.App")
+        src = f"{config['destination']}\\bin\\Win64_Shipping_Server\\Microsoft.AspNetCore.App"
+        dst = f"{config['destination']}\\bin\\Win64_Shipping_Server\\_Microsoft.AspNetCore.App"
+        print(f'{src}\n> {dst}')
+        os.rename(src, dst)
