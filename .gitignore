@@ -167,5 +167,6 @@ config2.json
 # source icon files
 icon/
 
-# release binary
-release/
+# release folders
+release/main
+release/spec
